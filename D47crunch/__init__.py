@@ -2716,19 +2716,20 @@ class D4xdata(list):
 		'''
 		raise DeprecationWarning('D4xdata.simulate is deprecated and has been replaced by virtual_data()')
 
-	def plot_distribution_of_analyses(self, dir = 'output', filename = None, vs_time = False, output = None):
+	def plot_distribution_of_analyses(self, dir = 'output', filename = None, vs_time = False, output = None, figsize = (6,4)):
 		'''
 		Plot temporal distribution of all analyses in the data set.
 		
 		**Parameters**
 
 		+ `vs_time`: if `True`, plot as a function of `TimeTag` rather than sequentially.
+		+ `figsize`: figure size in inches (width, height)
 		'''
 
 		asamples = [s for s in self.anchors]
 		usamples = [s for s in self.unknowns]
 		if output is None or output == 'fig':
-			fig = ppl.figure(figsize = (6,4))
+			fig = ppl.figure(figsize = figsize)
 			ppl.subplots_adjust(0.02, 0.03, 0.9, 0.8)
 		Xmax = max([r['TimeTag'] if vs_time else j for j,r in enumerate(self)])
 		for k, s in enumerate(asamples + usamples):
